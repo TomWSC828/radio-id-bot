@@ -9,9 +9,20 @@ from app.misc import Misc
 from app.task import BotTask
 from app.static import COMMANDS
 
+import discord
+import os
+
+from discord.ext import commands
+from dotenv import load_dotenv
+from app.player import RadioPlayer
+from app.extras import Extras
+from app.misc import Misc
+from app.task import BotTask
+from app.static import COMMANDS
+
 load_dotenv()
 
-PREFIX = "!radio"
+PREFIX = "!lounge"
 TOKEN = os.getenv("DISCORD_TOKEN")
 if os.environ.get("ENVIRONMENT") == "dev":
     PREFIX = "!r"
@@ -23,7 +34,7 @@ if TOKEN is None:
 
 bot = commands.AutoShardedBot(
     command_prefix=f"{PREFIX} ",
-    description="Discord bot untuk memainkan radio favoritmu!",
+    description="A bot in playing lounge music! For 24/7! Free off charge!",
     help_command=None
 )
 
@@ -32,7 +43,7 @@ bot = commands.AutoShardedBot(
 async def on_ready():
     print(f"{bot.user.name} has connected to Discord!")
     print(f"Currently added by {len(bot.guilds)} servers")
-    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=f"`{PREFIX} help` untuk memulai."))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=f"`{PREFIX} help` to use the specified command"))
 
 
 @bot.command('help')
@@ -42,7 +53,7 @@ async def _help(ctx):
     """
 
     embed = discord.Embed(
-        title="Daftar perintah yang tersedia:",
+        title="All of my availible commands:",
         color=0x9395a5
     )
 
@@ -60,11 +71,11 @@ async def on_command_error(ctx, error):
 
     if isinstance(error, commands.CommandOnCooldown):
         cd = "{:.2f}".format(error.retry_after)
-        await ctx.send(f"Gunakan command ini lagi setelah {cd} detik")
+        await ctx.send(f"Oops, seems like we've encountered an error. Try again after {cd} second(s).")
         return
 
     if isinstance(error, commands.CommandNotFound):
-        await ctx.send(f"{str(error)}, use `{PREFIX} help` to list available commands")
+        await ctx.send(f"{str(error)}, Use `{PREFIX} help` to list all of my available commands")
         return
 
     if isinstance(error, commands.ChannelNotFound):
