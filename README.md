@@ -1,16 +1,6 @@
 # Radio-Id Bot (Discord Voice Bot)
 
-> Radio-id-bot (Radio Indonesia) is a simple Discord Music Bot built with discord.py to play a radio from some Indonesian radio-station
-
-[![Discord Bots](https://top.gg/api/widget/777757482687922198.svg)](https://top.gg/bot/777757482687922198)
-
-## Getting Started
-
-Invite this bot to your server with this [link 🔗](https://discord.com/api/oauth2/authorize?client_id=777757482687922198&permissions=8&scope=bot)
-
-## Commands
-
-Note: The default prefix is `!radio`
+Note: The default prefix is `!lounge`
 
 * `!radio help`
 List all available commands
@@ -64,4 +54,4 @@ Run the python
     
 ## About
 
-* Contact me on [twitter](https://twitter.com/adifahmii)
+* Contact me on [twitter]
